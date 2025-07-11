@@ -1,0 +1,20 @@
+name: gh
+on:
+  push:
+    paths:
+      - '.github/workflows/gh.yml'
+      - 'api/**'
+  workflow_dispatch: #manually triggered
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+        - run: env
+        - run: gh --version
+        - run: gh auth status
+        - run: gh repos list
+        - run: gh issues list
+        - run: gh workflows list
+        - run: gh api /repos/:owner/:repo/actions/workflows
