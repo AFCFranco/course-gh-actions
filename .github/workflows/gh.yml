@@ -5,6 +5,32 @@ on:
       - '.github/workflows/gh.yml'
       - 'api/**'
   workflow_dispatch: #manually triggered
+        inputs:
+          environment:
+            description: 'Environment to run the workflow'
+            required: true
+            default: 'development'
+            type: choice
+            options:
+              - development
+              - staging
+              - production
+          region:
+            description: 'Region to run the workflow'
+            required: true
+            type: choice
+            options:
+              - us-east-1
+              - us-west-2
+              - eu-west-1
+          perfJob:
+            description: 'Performance job to run'
+            required: false
+            type: choice
+            options:
+              - job1
+              - job2
+              - job3
 jobs:
   cli:
     runs-on: ubuntu-latest
